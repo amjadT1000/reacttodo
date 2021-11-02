@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./app.css";
 
 function App() {
@@ -10,13 +10,14 @@ function App() {
     setInputText(newValue);
   }
 
-  function deleteItem(ele) {
-    var index = items.indexOf(ele.target.id);
+  function deleteItem(event) {
+    var index = items.indexOf(event.target.id);
     if (index > -1) {
       items.splice(index, 1);
     }
-    setItems(items);
-    // console.log(ele.target.parentNode.remove());\
+    setItems((prevItems) => {
+      return [...prevItems];
+    });
   }
 
   function addItem() {
